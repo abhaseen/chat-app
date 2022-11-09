@@ -1,6 +1,6 @@
 <template>
   <div class="container about w-50 mx-auto">
-    <h1>Enigma Protocol</h1>
+    <h1>Chat Protocol</h1>
     <br/>
     <p>
       This Website is used for anonymous chatting with end to end encryption support.
