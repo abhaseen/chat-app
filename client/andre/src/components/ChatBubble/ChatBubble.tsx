@@ -1,23 +1,24 @@
 import styles from "./styles.module.css";
 
 type Props = {
+  message: string;
+  author: string;
   isSelf?: boolean;
 };
 
-export function ChatBubble({ isSelf = false }: Props) {
+export function ChatBubble({ message, author, isSelf = false }: Props) {
   return (
-    <div className={styles.chatBubbleContainer}>
-      {!isSelf ? <div className={styles.imgContainer}>img</div> : null}
-      <div
+    <div>
+      <p
         className={`${styles.messageContainer} ${
           isSelf ? styles.messageContainerSelf : null
         }`}
       >
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
-          numquam.
-        </p>
-      </div>
+        {message}
+      </p>
+      <p className={`${styles.author} ${isSelf ? styles.authorSelf : null}`}>
+        {isSelf ? "You" : author}
+      </p>
     </div>
   );
 }
