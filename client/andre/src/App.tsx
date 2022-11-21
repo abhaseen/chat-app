@@ -16,7 +16,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <PageLayout />,
+      element: <PageLayout socket={socket} roomId={roomId} />,
       errorElement: <ErrorPage />,
       children: [
         {

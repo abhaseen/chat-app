@@ -6,4 +6,5 @@ export const SOCKET_ACTIONS = {
   disconnect: "disconnect",
   chat: "chat",
   joinRoom: "join_room",
+  leaveRoom: "leave_room",
 };

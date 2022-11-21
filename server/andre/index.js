@@ -32,6 +32,15 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on(SOCKET_ACTIONS.leaveRoom, (roomId) => {
+    socket.leave(roomId);
+    io.to(roomId).emit(SOCKET_ACTIONS.chat, {
+      roomId,
+      author: "ChatBot",
+      message: "A user has left.",
+    });
+  });
+
   socket.on(SOCKET_ACTIONS.chat, (data) => {
     io.to(data.roomId).emit(SOCKET_ACTIONS.chat, data);
   });
