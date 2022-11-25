@@ -26,6 +26,7 @@ io.on("connection", (socket) => {
   socket.on(SOCKET_ACTIONS.joinRoom, (roomId) => {
     socket.join(roomId);
     io.to(roomId).emit(SOCKET_ACTIONS.chat, {
+      id: "room-bot-1000",
       roomId,
       author: "ChatBot",
       message: "A new user has joined!",
@@ -35,6 +36,7 @@ io.on("connection", (socket) => {
   socket.on(SOCKET_ACTIONS.leaveRoom, (roomId) => {
     socket.leave(roomId);
     io.to(roomId).emit(SOCKET_ACTIONS.chat, {
+      id: "room-bot-1000",
       roomId,
       author: "ChatBot",
       message: "A user has left.",

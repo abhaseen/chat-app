@@ -28,12 +28,10 @@ export function ChatRoom(props: Props) {
 
     props.socket.on(SOCKET_ACTIONS.disconnect, () => {
       setIsConnected(false);
-      console.log(`User ${props.username} disconnected`);
     });
 
     props.socket.on(SOCKET_ACTIONS.chat, (msg) => {
       setAllMessages((existingMsgs) => [...existingMsgs, msg]);
-      console.log(`A message was sent`);
     });
 
     return () => {
@@ -49,6 +47,7 @@ export function ChatRoom(props: Props) {
 
   function handleSendMessage(e: React.FormEvent<HTMLFormElement>) {
     const messageData: MessageData = {
+      id: props.socket.id,
       roomId: roomId,
       author: props.username,
       message: currentMessage,
@@ -75,8 +74,7 @@ export function ChatRoom(props: Props) {
           {allMessages.map((data, idx) => (
             <ChatBubble
               key={idx}
-              message={data.message}
-              author={data.author}
+              message={data}
               isSelf={props.username === data.author ? true : false}
             />
           ))}

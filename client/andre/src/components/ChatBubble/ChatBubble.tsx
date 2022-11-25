@@ -1,23 +1,33 @@
+import { MessageData } from "../../interfaces/MessageData";
 import styles from "./styles.module.css";
 
 type Props = {
-  message: string;
-  author: string;
+  message: MessageData;
   isSelf?: boolean;
 };
 
-export function ChatBubble({ message, author, isSelf = false }: Props) {
+export function ChatBubble({ message, isSelf = false }: Props) {
+  const botAuthorityId = "room-bot-1000";
+
   return (
     <div>
       <p
-        className={`${styles.messageContainer} ${
-          isSelf ? styles.messageContainerSelf : null
-        }`}
+        className={`
+        ${styles.messageContainer} 
+        ${message.id === botAuthorityId ? styles.messageContainerBot : null} 
+        ${isSelf ? styles.messageContainerSelf : null}
+        `}
       >
-        {message}
+        {message.message}
       </p>
-      <p className={`${styles.author} ${isSelf ? styles.authorSelf : null}`}>
-        {isSelf ? "You" : author}
+      <p
+        className={`
+        ${styles.author} 
+        ${message.id === botAuthorityId ? styles.authorBot : null} 
+        ${isSelf ? styles.authorSelf : null}
+        `}
+      >
+        {isSelf ? "You" : message.author}
       </p>
     </div>
   );
